@@ -8,14 +8,6 @@ namespace KataTennis.App
         private KataTennisPlayer Player1 { get; set; }
         private KataTennisPlayer Player2 { get; set; }
 
-        private bool AreBothPlayerAtLeastForty
-        {
-            get
-            {
-                return (Player1.Point >= KataTennisPoint.Forty && Player2.Point >= KataTennisPoint.Forty);
-            }
-        }
-
         public KataTennisScoringService(KataTennisPlayer player1, KataTennisPlayer player2)
         {
             Player1 = player1;
@@ -69,7 +61,7 @@ namespace KataTennis.App
 
         public bool CheckForInDuece()
         {
-            return AreBothPlayerAtLeastForty && Player1.Point == KataTennisPoint.Forty && Player2.Point == KataTennisPoint.Forty;
+            return Player1.Point == KataTennisPoint.Forty && Player2.Point == KataTennisPoint.Forty;
         }
 
         public KataTennisPlayer GetPlayerInAdvange()
