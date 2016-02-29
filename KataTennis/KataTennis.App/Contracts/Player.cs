@@ -1,5 +1,3 @@
-using System;
-
 namespace KataTennis.App.Contracts
 {
     public abstract class Player

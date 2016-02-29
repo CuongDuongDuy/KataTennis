@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Runtime.Serialization.Formatters;
 using KataTennis.App;
 using KataTennis.App.Contracts;
-using Moq;
 using NUnit.Framework;
 
 namespace KataTennis.Test

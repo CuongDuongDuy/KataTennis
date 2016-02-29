@@ -1,5 +1,4 @@
 ﻿using System;
-using KataTennis.App.Contracts;
 
 namespace KataTennis.App
 {
