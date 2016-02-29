@@ -55,8 +55,8 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="KataPlayerTest.cs" />
-    <Compile Include="ScoringServiceTest.cs" />
+    <Compile Include="KataTennisPlayerTest.cs" />
+    <Compile Include="KataTennisScoringServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

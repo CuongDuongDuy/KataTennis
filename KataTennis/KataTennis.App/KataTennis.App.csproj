@@ -44,11 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KataPoints.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Contracts\IScoringService.cs" />
+    <Compile Include="KataTennisPoint.cs" />
+    <Compile Include="KataTennisPlayer.cs" />
+    <Compile Include="Contracts\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="KataScoringService.cs" />
+    <Compile Include="KataTennisScoringService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
