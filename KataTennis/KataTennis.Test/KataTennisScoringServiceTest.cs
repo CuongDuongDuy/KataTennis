@@ -206,5 +206,68 @@ namespace KataTennis.Test
             Assert.AreEqual(player1.Point, KataTennisPoint.Forty);
             Assert.AreEqual(player2.Point, KataTennisPoint.Forty + 2);
         }
+
+
+        [TestCase(KataTennisPoint.Love, KataTennisPoint.Love, Result = "Player 1: Love - Player 2: Love")]
+        [TestCase(KataTennisPoint.Love, KataTennisPoint.Fifteen, Result = "Player 1: Love - Player 2: Fifteen")]
+        [TestCase(KataTennisPoint.Love, KataTennisPoint.Thirty, Result = "Player 1: Love - Player 2: Thirty")]
+        [TestCase(KataTennisPoint.Love, KataTennisPoint.Forty, Result = "Player 1: Love - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Fifteen, KataTennisPoint.Love, Result = "Player 1: Fifteen - Player 2: Love")]
+        [TestCase(KataTennisPoint.Fifteen, KataTennisPoint.Fifteen, Result = "Player 1: Fifteen - Player 2: Fifteen")]
+        [TestCase(KataTennisPoint.Fifteen, KataTennisPoint.Thirty, Result = "Player 1: Fifteen - Player 2: Thirty")]
+        [TestCase(KataTennisPoint.Fifteen, KataTennisPoint.Forty, Result = "Player 1: Fifteen - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Thirty, KataTennisPoint.Love, Result = "Player 1: Thirty - Player 2: Love")]
+        [TestCase(KataTennisPoint.Thirty, KataTennisPoint.Fifteen, Result = "Player 1: Thirty - Player 2: Fifteen")]
+        [TestCase(KataTennisPoint.Thirty, KataTennisPoint.Thirty, Result = "Player 1: Thirty - Player 2: Thirty")]
+        [TestCase(KataTennisPoint.Thirty, KataTennisPoint.Forty, Result = "Player 1: Thirty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Thirty, KataTennisPoint.Forty + 1, Result = "Player 1: Thirty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Love, Result = "Player 1: Forty - Player 2: Love")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Fifteen, Result = "Player 1: Forty - Player 2: Fifteen")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Thirty, Result = "Player 1: Forty - Player 2: Thirty")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Forty, Result = "Player 1: Forty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Forty + 1, Result = "Player 1: Forty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Forty + 2, Result = "Player 1: Forty - Player 2: Forty")]
+
+        public string GetCurrentResultShouldInTemplate(int player1Point, int player2Point)
+        {
+            player1.Point = player1Point;
+            player2.Point = player2Point;
+
+            const string template = "{0}: {1} - {2}: {3}";
+            var player1PointName = KataTennisPoint.PointNames[Math.Min(player1.Point, KataTennisPoint.Forty)];
+            var player2PointName = KataTennisPoint.PointNames[Math.Min(player2.Point, KataTennisPoint.Forty)];
+            var result = string.Format(template, player1.Name, player1PointName, player2.Name, player2PointName);
+            return result;
+        }
+
+
+        [TestCase(KataTennisPoint.Thirty, KataTennisPoint.Forty + 1, Result = "Player 1: Thirty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Forty + 1, Result = "Player 1: Forty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Forty, KataTennisPoint.Forty + 2, Result = "Player 1: Forty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Forty + 1, KataTennisPoint.Thirty, Result = "Player 1: Forty - Player 2: Thirty")]
+        [TestCase(KataTennisPoint.Forty + 1, KataTennisPoint.Forty, Result = "Player 1: Forty - Player 2: Forty")]
+        [TestCase(KataTennisPoint.Forty + 2, KataTennisPoint.Forty, Result = "Player 1: Forty - Player 2: Forty")]
+        public string GetCurrentResultShouldInRange(int player1Point, int player2Point)
+        {
+            player1.Point = player1Point;
+            player2.Point = player2Point;
+
+            const string template = "{0}: {1} - {2}: {3}";
+            var player1PointName = KataTennisPoint.PointNames[Math.Min(player1.Point, KataTennisPoint.Forty)];
+            var player2PointName = KataTennisPoint.PointNames[Math.Min(player2.Point, KataTennisPoint.Forty)];
+            var result = string.Format(template, player1.Name, player1PointName, player2.Name, player2PointName);
+            return result;
+        }
+
+
+        [TestCase("Zeeshan", "Matthew", Result = "Zeeshan - Matthew")]
+        [TestCase("Matthew", "Zeeshan", Result = "Matthew - Zeeshan")]
+        [TestCase("Player", "Player", Result = "Player - Player")]
+        public string PlayersNameShouldBeInOrder(string name1, string name2)
+        {
+            var service = new KataTennisScoringService(new KataTennisPlayer(name1), new KataTennisPlayer(name2));
+            var result = string.Format("{0} - {1}", service.Player1.Name, service.Player2.Name);
+            return result;
+        }
     }
 }

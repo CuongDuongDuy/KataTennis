@@ -5,8 +5,8 @@ namespace KataTennis.App
 {
     public class KataTennisScoringService : IScoringService
     {
-        private KataTennisPlayer Player1 { get; set; }
-        private KataTennisPlayer Player2 { get; set; }
+        public KataTennisPlayer Player1 { get; private set; }
+        public KataTennisPlayer Player2 { get; private set; }
 
         public KataTennisScoringService(KataTennisPlayer player1, KataTennisPlayer player2)
         {
@@ -34,29 +34,13 @@ namespace KataTennis.App
             return null;
         }
 
-        public void ShowCurrentResults()
+        public string GetCurrentResults()
         {
-            const string template = "===> Current Result: {0}: {1} - {2}: {3}";
+            const string template = "{0}: {1} - {2}: {3}";
             var player1PointName = KataTennisPoint.PointNames[Math.Min(Player1.Point, KataTennisPoint.Forty)];
             var player2PointName = KataTennisPoint.PointNames[Math.Min(Player2.Point, KataTennisPoint.Forty)];
-            Console.WriteLine(template, Player1.Name, player1PointName,Player2.Name, player2PointName);
-            if (CheckForInDuece())
-            {
-                Console.WriteLine("===> In duece");
-                return;
-            }
-            var advangedPlayer = GetPlayerInAdvange();
-            if (advangedPlayer != null)
-            {
-                Console.WriteLine("===> {0} is in advange", advangedPlayer.Name);
-                return;
-            }
-
-            var winner = GetWinner();
-            if (winner != null)
-            {
-                Console.WriteLine("===> {0} is a winner", winner.Name);
-            }
+            var result = string.Format(template, Player1.Name, player1PointName,Player2.Name, player2PointName);
+            return result;
         }
 
         public bool CheckForInDuece()

@@ -12,12 +12,14 @@ namespace KataTennis.Test
         {
         }
 
-        [Test]
-        public void NameShouldBeSameAsInCtor()
+        [TestCase("Cuong Duong", Result = "Cuong Duong")]
+        [TestCase("Cuong Duong 1", Result = "Cuong Duong 1")]
+        [TestCase("Cuong Duong 2", Result = "Cuong Duong 2")]
+        [TestCase("Cuong Duong 3", Result = "Cuong Duong 3")]
+        public string NameShouldBeSameAsInCtor(string name)
         {
-            const string name = "Cuong Duong";
             var player = new KataTennisPlayer(name);
-            Assert.AreEqual(name, player.Name);
+            return player.Name;
         }
     }
 }
