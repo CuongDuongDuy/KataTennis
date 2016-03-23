@@ -16,7 +16,7 @@ namespace KataTennis.Test
         [TestCase("Cuong Duong 1", Result = "Cuong Duong 1")]
         [TestCase("Cuong Duong 2", Result = "Cuong Duong 2")]
         [TestCase("Cuong Duong 3", Result = "Cuong Duong 3")]
-        public string NameShouldBeSameAsInCtor(string name)
+        public string Name_Should_Be_Same_As_Initial(string name)
         {
             var player = new KataTennisPlayer(name);
             return player.Name;
